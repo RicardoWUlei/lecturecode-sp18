@@ -2,10 +2,26 @@ public class IntList {
 	public int first;
 	public IntList rest;
 
+    /**Constructor. */
 	public IntList(int f, IntList r) {
 		first = f;
 		rest = r;
-	}
+    }
+    
+    /**Add two identical numbers in a row and make one larger
+     * node. Using recursion.    */
+    public void addAdjacent(){
+        if(rest==null)
+            return;
+        if(first==rest.first){
+            first *= 2;
+            rest = rest.rest;
+            addAdjacent();
+        }
+        else{
+            rest.addAdjacent();
+        }
+    }
 
 	/** Return the size of the list using... recursion! */
 	public int size() {
@@ -35,10 +51,11 @@ public class IntList {
 	}
 
 	public static void main(String[] args) {
-		IntList L = new IntList(15, null);
-		L = new IntList(10, L);
-		L = new IntList(5, L);
-
-		System.out.println(L.get(100));
+		IntList L = new IntList(3, null);
+		L = new IntList(2, L);
+        L = new IntList(1, L);
+        L = new IntList(1, L);
+        L.addAdjacent();
+		System.out.println(L.size());
 	}
-} 
+}
