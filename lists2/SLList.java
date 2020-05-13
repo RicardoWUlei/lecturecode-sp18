@@ -33,10 +33,12 @@ public class SLList {
     /** Construct a SLList with an array of integers. */
     public SLList(int[] x) {
         sentinel = new IntNode(63, null);
+        size = 0;
         IntNode p = sentinel;
         for (int i = 0; i < x.length; i++) {
             p.next = new IntNode(x[i], null);
             p = p.next;
+            size += 1;
         }
     }
 
